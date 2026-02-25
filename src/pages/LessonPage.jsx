@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getLessonByIdApi, completeLessonApi } from '../api/lessonApi';
 import { useAuth } from '../context/AuthContext';
+import AiChat from '../components/common/AiChat';
 
 export default function LessonPage() {
     const { id } = useParams();
@@ -101,6 +102,9 @@ export default function LessonPage() {
                     )}
                 </div>
             )}
+
+            {/* AI Chat — gắn vào cuối mỗi bài học */}
+            <AiChat lessonId={parseInt(id)} />   {/* 👈 thêm */}
         </div>
     );
 }
