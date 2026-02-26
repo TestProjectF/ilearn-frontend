@@ -10,6 +10,8 @@ import RegisterPage from './pages/auth/RegisterPage';
 import CoursesPage from './pages/CoursesPage';
 import CourseDetailPage from './pages/CourseDetailPage';
 import LessonPage from './pages/LessonPage';
+import ProfilePage from './pages/ProfilePage';
+import AdminPage from './pages/admin/AdminPage';
 
 import './index.css';
 
@@ -26,11 +28,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {/* Public */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          {/* Protected */}
           <Route path="/" element={
             <ProtectedLayout><CoursesPage /></ProtectedLayout>
           } />
@@ -39,6 +39,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           } />
           <Route path="/lessons/:id" element={
             <ProtectedLayout><LessonPage /></ProtectedLayout>
+          } />
+          <Route path="/profile" element={
+            <ProtectedLayout><ProfilePage /></ProtectedLayout>
+          } />
+          <Route path="/admin" element={
+            <ProtectedLayout><AdminPage /></ProtectedLayout>
           } />
         </Routes>
       </AuthProvider>
