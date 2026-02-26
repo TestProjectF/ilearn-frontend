@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getCourseByIdApi } from '../api/courseApi';
 import { getCourseProgressApi } from '../api/progressApi';
 import ProgressBar from '../components/common/ProgressBar';
-
+import Spinner from '../components/common/Spinner';
 export default function CourseDetailPage() {
     const { id } = useParams();
     const [course, setCourse] = useState(null);
@@ -29,7 +29,7 @@ export default function CourseDetailPage() {
     if (loading) {
         return (
             <div className="flex items-center justify-center py-20">
-                <p className="text-gray-400">Đang tải...</p>
+                <Spinner />
             </div>
         );
     }
@@ -94,8 +94,8 @@ export default function CourseDetailPage() {
                                 {/* Số thứ tự hoặc icon hoàn thành */}
                                 <div
                                     className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${isCompleted
-                                            ? 'bg-green-500 text-white'
-                                            : 'bg-blue-600 text-white'
+                                        ? 'bg-green-500 text-white'
+                                        : 'bg-blue-600 text-white'
                                         }`}
                                 >
                                     {isCompleted ? '✓' : index + 1}

@@ -1,4 +1,5 @@
 import { useAuth } from '../context/AuthContext';
+import Spinner from '../components/common/Spinner';
 
 export default function HomePage() {
     const { user, logout } = useAuth();
@@ -22,7 +23,7 @@ export default function HomePage() {
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">
                     Khóa học của bạn
                 </h2>
-                <p className="text-gray-500">Đang tải...</p>
+                <Spinner />
             </main>
         </div>
     );

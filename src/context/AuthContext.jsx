@@ -10,17 +10,34 @@ export function AuthProvider({ children }) {
     // Khi app khởi động, kiểm tra token còn hợp lệ không
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
-            getProfileApi()
-                .then((res) => setUser(res.data.user))
-                .catch(() => {
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('user');
-                })
-                .finally(() => setLoading(false));
-        } else {
+        if (!token) {
             setLoading(false);
+            return;
         }
+
+        // Kiểm tra token có hết hạn chưa (decode JWT đơn giản)
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            if (payload.exp * 1000 < Date.now()) {
+                // Token hết hạn
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                setLoading(false);
+                return;
+            }
+        } catch {
+            localStorage.removeItem('token');
+            setLoading(false);
+            return;
+        }
+
+        getProfileApi()
+            .then((res) => setUser(res.data.user))
+            .catch(() => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+            })
+            .finally(() => setLoading(false));
     }, []);
 
     const login = (token, userData) => {

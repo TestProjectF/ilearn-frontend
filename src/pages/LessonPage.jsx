@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getLessonByIdApi, completeLessonApi } from '../api/lessonApi';
 import { useAuth } from '../context/AuthContext';
 import AiChat from '../components/common/AiChat';
+import Spinner from '../components/common/Spinner';
 
 export default function LessonPage() {
     const { id } = useParams();
@@ -37,7 +38,7 @@ export default function LessonPage() {
     if (loading) {
         return (
             <div className="flex items-center justify-center py-20">
-                <p className="text-gray-400">Đang tải bài học...</p>
+                <Spinner />
             </div>
         );
     }

@@ -1,16 +1,52 @@
-# React + Vite
+# iLearn+ Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Giao diện web cho nền tảng học tập iLearn+.
 
-Currently, two official plugins are available:
+## Tech Stack
+- React 18 + Vite
+- Tailwind CSS
+- Axios
+- React Router DOM
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Cài đặt local
+```bash
+git clone https://github.com/punnohoang/ilearn-frontend.git
+cd ilearn-frontend
+npm install
+```
 
-## React Compiler
+Tạo file `.env.local`:
+```
+VITE_API_URL=http://localhost:3001/api
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Chạy:
+```bash
+npm run dev
+```
 
-## Expanding the ESLint configuration
+Mở http://localhost:5173
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tài khoản demo
+- Student: đăng ký tài khoản mới
+- Admin: admin@ilearn.com / admin123
+
+## Cấu trúc thư mục
+```
+src/
+├── api/          # Axios functions gọi backend
+├── components/   # Reusable components
+│   └── common/   # Layout, ProtectedRoute, ProgressBar, AiChat...
+├── context/      # AuthContext
+└── pages/        # Các trang chính
+    ├── auth/     # Login, Register
+    ├── admin/    # Admin Panel
+    ├── CoursesPage.jsx
+    ├── CourseDetailPage.jsx
+    ├── LessonPage.jsx
+    └── ProfilePage.jsx
+```
+
+## Deploy
+- Platform: Vercel
+- URL: https://ilearn-frontend.vercel.app
